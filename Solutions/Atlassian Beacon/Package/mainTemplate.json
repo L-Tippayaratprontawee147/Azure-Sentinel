@@ -58,6 +58,7 @@
     "playbookTemplateSpecName1": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',concat(parameters('workspace'),'-pl-',uniquestring(variables('_playbookContentId1'))))]",
     "workspaceResourceId": "[resourceId('microsoft.OperationalInsights/Workspaces', parameters('workspace'))]",
     "_playbookcontentProductId1": "[concat(take(variables('_solutionId'),50),'-','pl','-', uniqueString(concat(variables('_solutionId'),'-','Playbook','-',variables('_playbookContentId1'),'-', variables('playbookVersion1'))))]",
+    "blanks": "[replace('b', 'b', '')]",
     "_solutioncontentProductId": "[concat(take(variables('_solutionId'),50),'-','sl','-', uniqueString(concat(variables('_solutionId'),'-','Solution','-',variables('_solutionId'),'-', variables('_solutionVersion'))))]"
   },
   "resources": [
@@ -234,7 +235,7 @@
                         "scope": "Workspace"
                       },
                       {
-                        "permissionsDisplayText": "read permissions to shared keys for the workspace are required. [See the documentation to learn more about workspace keys](https://docs.microsoft.com/azure/azure-monitor/platform/agent-windows#obtain-workspace-id-and-key)",
+                        "permissionsDisplayText": "read permissions to shared keys for the workspace are required. [See the documentation to learn more about workspace keys](https://docs.microsoft.com/azure/azure-monitor/platform/agent-windows#obtain-workspace-id-and-key).",
                         "provider": "Microsoft.OperationalInsights/workspaces/sharedKeys",
                         "providerDisplayName": "Keys",
                         "requiredPermissions": {
@@ -384,7 +385,7 @@
                 "scope": "Workspace"
               },
               {
-                "permissionsDisplayText": "read permissions to shared keys for the workspace are required. [See the documentation to learn more about workspace keys](https://docs.microsoft.com/azure/azure-monitor/platform/agent-windows#obtain-workspace-id-and-key)",
+                "permissionsDisplayText": "read permissions to shared keys for the workspace are required. [See the documentation to learn more about workspace keys](https://docs.microsoft.com/azure/azure-monitor/platform/agent-windows#obtain-workspace-id-and-key).",
                 "provider": "Microsoft.OperationalInsights/workspaces/sharedKeys",
                 "providerDisplayName": "Keys",
                 "requiredPermissions": {
@@ -476,8 +477,6 @@
               "name": "[[parameters('PlaybookName')]",
               "location": "[[variables('workspace-location-inline')]",
               "tags": {
-                "CreatedBy": "iCE Engineering Team",
-                "Description": "Logic app to recieve webhook from Atlassian Beacon and ingest the payload into Microsoft Sentinel's log analytics workspace",
                 "hidden-SentinelWorkspaceId": "[[variables('workspaceResourceId')]"
               },
               "dependsOn": [
@@ -597,7 +596,22 @@
                 }
               }
             }
-          ]
+          ],
+          "metadata": {
+            "title": "Atlassian Beacon Integration",
+            "description": "This Logic App recieves a webhook from Atlassian Beacon and ingest the payload into Microsoft Sentinel's log analytics workspace",
+            "prerequisites": [
+              "1. Log Analytics Workspace ID and Workspace Key. To get these secrets, login into your Microsoft Sentinel instance and navigate to Settings --> Workspace settings --> Agents"
+            ],
+            "lastUpdateTime": "2023-09-27T15:17:28.964Z",
+            "releaseNotes": {
+              "version": "1.0",
+              "title": "[variables('blanks')]",
+              "notes": [
+                "Initial version"
+              ]
+            }
+          }
         },
         "packageKind": "Solution",
         "packageVersion": "[variables('_solutionVersion')]",
