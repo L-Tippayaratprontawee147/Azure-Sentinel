@@ -7,6 +7,13 @@
         "prerequisites": [
             "1. Log Analytics Workspace ID and Workspace Key. To get these secrets, login into your Microsoft Sentinel instance and navigate to Settings --> Workspace settings --> Agents"
         ],
+        "postDeployment":[],
+        "lastudpated time":"2023-10-09T00:00:00.000Z", 
+        "entities": [], 
+        "tags":[], 
+        "support":{
+            "tier": "community"
+        },
         "author": {
             "name": "DEFEND Ltd."
         }
